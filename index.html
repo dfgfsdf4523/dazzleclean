@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/ico" href="favicon.ico">
+    <title>DazzleClean — Компактный клининг</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>✨ DazzleClean</h1>
+        <p>Уборка по подписке</p>
+    </div>
+</header>
+
+<main class="container">
+    <section class="hero compact">
+        <h2>Чистота в один клик</h2>
+        <button id="orderBtn" class="main-btn">Заказать уборку</button>
+    </section>
+
+    <section class="services-section compact">
+        <h3>Наши услуги 👇</h3>
+        <div class="accordion">
+            <div class="acc-item">
+                <div class="acc-header"><span>🧹</span> Основная уборка</div>
+                <div class="acc-content"><p>Влажная уборка полов, обеспыливание поверхностей, зеркал и сантехники.</p></div>
+            </div>
+            <div class="acc-item">
+                <div class="acc-header"><span>🧼</span> Глубокая чистка</div>
+                <div class="acc-content"><p>Тщательная мойка в труднодоступных местах, удаление налета и жира.</p></div>
+            </div>
+            <div class="acc-item">
+                <div class="acc-header"><span>📦</span> Переезд</div>
+                <div class="acc-content"><p>Полная подготовка жилья к заселению или сдаче: отмываем всё до блеска.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="prices compact">
+        <h3>Тарифы подписки</h3>
+        <div class="grid small">
+            <div class="card price"><b>Базовый</b><small>Раз в 2 недели</small>от 60 BYN</div>
+            <div class="card price"><b>Стандарт</b><small>Раз в неделю</small>от 110 BYN</div>
+            <div class="card price"><b>Премиум</b><small>2 раза в неделю</small>от 200 BYN</div>
+        </div>
+        <button id="subscribeBtn" class="secondary-btn">Подписаться</button>
+    </section>
+</main>
+
+<footer>
+    <p>📞 +375 (29) 000-00-00 | © 2026 DazzleClean</p>
+</footer>
+
+<div class="modal hidden" id="orderModal">
+    <div class="modal-content">
+        <span class="close" data-close>&times;</span>
+        <h3>Заказ уборки 🏠</h3>
+        <div class="modal-price-tag">Сумма: <span id="orderTotalPrice">45</span> BYN</div>
+        
+        <input type="text" id="orderName" placeholder="Ваше имя" oninput="this.value = this.value.replace(/[0-9]/g, '')">
+        <div class="phone-wrapper">
+            <img src="nomer.ico" alt="BY" class="flag-icon">
+            <div class="input-rel-container">
+                <input type="tel" id="orderPhone" value="+375 " maxlength="14">
+                <span class="phone-hint" id="orderHint">(29) 000 00 00</span>
+            </div>
+        </div>
+        <input type="text" id="orderAddress" placeholder="Адрес (улица, дом, кв)">
+        
+        <label class="custom-checkbox">
+            <input type="checkbox" id="ecoOrder" class="price-recalc">
+            <span class="checkmark"></span>
+            <span class="label-text">Эко-средства 🌿 <b>(+10 BYN)</b></span>
+        </label>
+        
+        <button id="sendOrder" class="modal-submit-btn">Заказать</button>
+    </div>
+</div>
+
+<div class="modal hidden" id="subscribeModal">
+    <div class="modal-content">
+        <span class="close" data-close>&times;</span>
+        <h3>Подписка 📦</h3>
+        <div class="modal-price-tag">Итого в месяц: <span id="subTotalPrice">60</span> BYN</div>
+        
+        <input type="text" id="subName" placeholder="Ваше имя" oninput="this.value = this.value.replace(/[0-9]/g, '')">
+        <div class="phone-wrapper">
+            <img src="nomer.ico" alt="BY" class="flag-icon">
+            <div class="input-rel-container">
+                <input type="tel" id="subPhone" value="+375 " maxlength="14">
+                <span class="phone-hint" id="subHint">(29) 000 00 00</span>
+            </div>
+        </div>
+        <input type="text" id="subAddress" placeholder="Адрес (улица, дом, кв)">
+
+        <div class="plan-selector">
+            <label class="plan-option">
+                <input type="radio" name="plan" value="Базовый" data-price="60" checked class="price-recalc">
+                <div class="plan-card">
+                    <span class="plan-emoji">🏠</span>
+                    <div class="plan-info"><b>Базовый</b><small>Раз в 2 недели (2 уб/мес)</small></div>
+                </div>
+            </label>
+            <label class="plan-option">
+                <input type="radio" name="plan" value="Стандарт" data-price="110" class="price-recalc">
+                <div class="plan-card">
+                    <span class="plan-emoji">✨</span>
+                    <div class="plan-info"><b>Стандарт</b><small>Раз в неделю (4 уб/мес)</small></div>
+                </div>
+            </label>
+            <label class="plan-option">
+                <input type="radio" name="plan" value="Премиум" data-price="200" class="price-recalc">
+                <div class="plan-card">
+                    <span class="plan-emoji">💎</span>
+                    <div class="plan-info"><b>Премиум</b><small>2 раза в неделю (8 уб/мес)</small></div>
+                </div>
+            </label>
+        </div>
+        
+        <label class="custom-checkbox">
+            <input type="checkbox" id="ecoSubscribe" class="price-recalc">
+            <span class="checkmark"></span>
+            <span class="label-text">Эко-средства 🌿 <b>(+25 BYN)</b></span>
+        </label>
+        
+        <button id="sendSubscribe" class="modal-submit-btn">Оформить</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
