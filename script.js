@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const BOT_TOKEN = "8409824309:AAHPmSGPDmXpqePtU_jtWoEQI7fOff38FV0";
-    const CHAT_ID = "-1003618378525";
+    // СЕКРЕТНЫЕ ДАННЫЕ УДАЛЕНЫ (Они теперь в настройках Netlify)
 
     const PRICES = { baseOrder: 45, ecoOrderAdd: 10, ecoSubAdd: 25 };
 
@@ -79,21 +78,33 @@ document.addEventListener("DOMContentLoaded", function () {
         return true;
     }
 
+    // ИЗМЕНЕННАЯ ФУНКЦИЯ ОТПРАВКИ
     function sendToTelegram(text, modal) {
         closeModal();
         showStatus("Отправка заявки... ⏳");
-        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+
+        fetch('/.netlify/functions/send-message', {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: "HTML" })
-        }).then(() => {
-            showStatus("Заявка принята! ✅");
-            modal.querySelectorAll("input").forEach(i => {
-                if(i.type === 'checkbox') i.checked = false;
-                else if(i.id.includes('Phone')) i.value = "+375 ";
-                else if(i.type !== 'radio') i.value = "";
-            });
-            document.querySelectorAll(".phone-hint").forEach(h => h.classList.remove("hidden"));
+            body: JSON.stringify({ text: text }) // Отправляем только текст
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.ok) {
+                showStatus("Заявка принята! ✅");
+                modal.querySelectorAll("input").forEach(i => {
+                    if(i.type === 'checkbox') i.checked = false;
+                    else if(i.id.includes('Phone')) i.value = "+375 ";
+                    else if(i.type !== 'radio') i.value = "";
+                });
+                document.querySelectorAll(".phone-hint").forEach(h => h.classList.remove("hidden"));
+            } else {
+                showStatus("Ошибка отправки ❌");
+            }
+        })
+        .catch(err => {
+            console.error("Ошибка:", err);
+            showStatus("Ошибка сети ❌");
         });
     }
 
