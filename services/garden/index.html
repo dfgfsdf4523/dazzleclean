@@ -1,1 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DazzleGarden — Уход за садом</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<header>
+    <div class="container">
+        <h1>🌳 DazzleGarden</h1>
+        <p>Уход за участком по подписке</p>
+    </div>
+</header>
+
+<main class="container">
+    <section class="hero compact">
+        <h2>Идеальный газон в один клик</h2>
+        <button id="orderBtn" class="main-btn">Заказать выезд</button>
+    </section>
+
+    <section class="services-section compact">
+        <h3>Наши услуги 👇</h3>
+        <div class="accordion">
+            <div class="acc-item">
+                <div class="acc-header"><span>✂️</span> Стрижка газона</div>
+                <div class="acc-content"><p>Профессиональный покос травы, стрижка кромок и аэрация для здоровья вашего газона.</p></div>
+            </div>
+            <div class="acc-item">
+                <div class="acc-header"><span>🌿</span> Уход за растениями</div>
+                <div class="acc-content"><p>Обрезка кустарников, формовка живой изгороди и сезонная подкормка удобрениями.</p></div>
+            </div>
+            <div class="acc-item">
+                <div class="acc-header"><span>🍂</span> Уборка территории</div>
+                <div class="acc-content"><p>Сбор листьев, веток и садового мусора. Подготовка участка к зиме или весне.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="prices compact">
+        <h3>Тарифы подписки</h3>
+        <div class="grid small">
+            <div class="card price"><b>Базовый</b><small>Раз в 2 недели</small>от 70 BYN</div>
+            <div class="card price"><b>Стандарт</b><small>Раз в неделю</small>от 130 BYN</div>
+            <div class="card price"><b>Премиум</b><small>2 раза в неделю</small>от 240 BYN</div>
+        </div>
+        <button id="subscribeBtn" class="secondary-btn">Подписаться на уход</button>
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 DazzleGarden | Красота вашего участка</p>
+</footer>
+
+<div class="modal hidden" id="orderModal">
+    <div class="modal-content">
+        <span class="close" data-close>&times;</span>
+        <h3>Заказ садовника 🌳</h3>
+        <div class="modal-price-tag">Сумма: <span id="orderTotalPrice">50</span> BYN</div>
+        <input type="text" id="orderName" placeholder="Ваше имя">
+        <div class="phone-wrapper">
+            <img src="../../nomer.ico" alt="BY" class="flag-icon">
+            <div class="input-rel-container">
+                <input type="tel" id="orderPhone" value="+375 " maxlength="14">
+                <span class="phone-hint" id="orderHint">(29) 000 00 00</span>
+            </div>
+        </div>
+        <input type="text" id="orderAddress" placeholder="Адрес участка">
+        <label class="custom-checkbox">
+            <input type="checkbox" id="ecoOrder" class="price-recalc">
+            <span class="checkmark"></span>
+            <span class="label-text">Вывоз мусора 🚛 <b>(+15 BYN)</b></span>
+        </label>
+        <button id="sendOrder" class="modal-submit-btn">Оформить</button>
+    </div>
+</div>
+
+<div class="modal hidden" id="subscribeModal">
+    <div class="modal-content">
+        <span class="close" data-close>&times;</span>
+        <h3>Садовая подписка 📦</h3>
+        <div class="modal-price-tag">Итого в месяц: <span id="subTotalPrice">70</span> BYN</div>
+        <input type="text" id="subName" placeholder="Ваше имя">
+        <div class="phone-wrapper">
+            <img src="../../nomer.ico" alt="BY" class="flag-icon">
+            <div class="input-rel-container">
+                <input type="tel" id="subPhone" value="+375 " maxlength="14">
+                <span class="phone-hint" id="subHint">(29) 000 00 00</span>
+            </div>
+        </div>
+        <input type="text" id="subAddress" placeholder="Адрес участка">
+
+        <div class="plan-selector">
+            <label class="plan-option">
+                <input type="radio" name="plan" value="Базовый" data-price="70" checked class="price-recalc">
+                <div class="plan-card">
+                    <span class="plan-emoji">🏡</span>
+                    <div class="plan-info"><b>Базовый</b><small>2 визита в месяц</small></div>
+                </div>
+            </label>
+            <label class="plan-option">
+                <input type="radio" name="plan" value="Стандарт" data-price="130" class="price-recalc">
+                <div class="plan-card">
+                    <span class="plan-emoji">🌳</span>
+                    <div class="plan-info"><b>Стандарт</b><small>4 визита в месяц</small></div>
+                </div>
+            </label>
+            <label class="plan-option">
+                <input type="radio" name="plan" value="Премиум" data-price="240" class="price-recalc">
+                <div class="plan-card">
+                    <span class="plan-emoji">🏰</span>
+                    <div class="plan-info"><b>Премиум</b><small>8 визитов в месяц</small></div>
+                </div>
+            </label>
+        </div>
+        <label class="custom-checkbox">
+            <input type="checkbox" id="ecoSubscribe" class="price-recalc">
+            <span class="checkmark"></span>
+            <span class="label-text">Свои инструменты 🛠 <b>(+0 BYN)</b></span>
+        </label>
+        <button id="sendSubscribe" class="modal-submit-btn">Оформить</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+* { 
+    box-sizing: border-box; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+    -webkit-tap-highlight-color: transparent; /* Убирает синий квадрат при нажатии на мобильных */
+}
+
+body { 
+    margin: 0; 
+    background: #f4f7f8; 
+    color: #333; 
+    font-size: 14px; 
+    line-height: 1.5;
+}
+
+.container { 
+    max-width: 600px; 
+    margin: 0 auto; 
+    padding: 0 15px; 
+}
+
+/* Шапка — Для Garden можно поменять цвет на зеленый #7bc67b, если захочешь */
+header { 
+    background: #82D5E8; 
+    color: white; 
+    padding: 25px 0; 
+    border-radius: 0 0 25px 25px; 
+    text-align: center; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+header h1 { margin: 0; font-size: 1.8rem; letter-spacing: 1px; }
+header p { margin: 5px 0 0; font-size: 0.9rem; opacity: 0.9; }
+
+section.compact { padding: 25px 0; text-align: center; }
+h3 { margin: 0 0 15px; font-size: 1rem; color: #888; text-transform: uppercase; letter-spacing: 1.5px; }
+
+/* Аккордеон услуг */
+.accordion { text-align: left; margin-bottom: 20px; }
+.acc-item { background: white; border-radius: 15px; margin-bottom: 10px; border: 1px solid #eee; overflow: hidden; transition: 0.3s; }
+.acc-header { padding: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; background: white; }
+.acc-header span { margin-right: 12px; font-size: 20px; }
+.acc-content { max-height: 0; overflow: hidden; transition: all 0.3s ease-out; color: #666; padding: 0 16px; }
+.acc-item.active { border-color: #82D5E8; box-shadow: 0 5px 15px rgba(130, 213, 232, 0.1); }
+.acc-item.active .acc-content { max-height: 200px; padding: 5px 16px 20px; border-top: 1px solid #f9f9f9; }
+
+/* Карточки тарифов */
+.grid { display: grid; gap: 10px; margin-bottom: 15px; }
+.grid.small { grid-template-columns: repeat(3, 1fr); }
+.card { background: white; padding: 15px 10px; border-radius: 15px; border: 1px solid #eee; font-size: 0.85rem; text-align: center; }
+.card.price b { color: #82D5E8; display: block; font-size: 1.1rem; margin-bottom: 4px; }
+.card.price small { display: block; font-size: 0.7rem; color: #aaa; line-height: 1.2; }
+
+/* Кнопки */
+button { cursor: pointer; border: none; font-weight: bold; border-radius: 15px; transition: 0.2s; outline: none; }
+.main-btn, .secondary-btn, .modal-submit-btn { 
+    width: 100%; 
+    padding: 16px; 
+    background: #82D5E8; 
+    color: white; 
+    font-size: 1rem; 
+    box-shadow: 0 4px 15px rgba(130, 213, 232, 0.3);
+}
+.main-btn:active, .secondary-btn:active { transform: scale(0.98); }
+.secondary-btn { background: #333; margin-top: 10px; }
+
+/* Модальные окна */
+.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; backdrop-filter: blur(5px); padding: 20px; }
+.modal-content { background: white; width: 100%; max-width: 360px; padding: 25px; border-radius: 20px; position: relative; animation: slideUp 0.3s ease-out; }
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-content h3 { color: #333; margin-bottom: 15px; text-align: center; }
+.modal-content input { width: 100%; padding: 12px 15px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 12px; font-size: 15px; background: #fcfcfc; }
+
+/* Ценник в модалке */
+.modal-price-tag { background: #f0faff; color: #82D5E8; padding: 12px; border-radius: 12px; text-align: center; font-weight: bold; font-size: 1.2rem; margin-bottom: 20px; border: 2px dashed #82D5E8; }
+
+/* Поле телефона */
+.phone-wrapper { display: flex; align-items: center; background: #fcfcfc; border: 1px solid #ddd; border-radius: 12px; margin-bottom: 10px; padding-left: 12px; }
+.input-rel-container { position: relative; flex-grow: 1; }
+.phone-wrapper input { border: none !important; margin-bottom: 0 !important; }
+.flag-icon { width: 22px; height: auto; }
+.phone-hint { position: absolute; left: 52px; top: 50%; transform: translateY(-50%); color: #bbb; pointer-events: none; }
+
+/* Селектор тарифов (Радиокнопки) */
+.plan-selector { display: flex; flex-direction: column; gap: 10px; margin: 15px 0; }
+.plan-option input { display: none; }
+.plan-card { display: flex; align-items: center; padding: 12px; background: #fcfcfc; border: 1px solid #ddd; border-radius: 12px; cursor: pointer; transition: 0.2s; }
+.plan-emoji { font-size: 24px; margin-right: 15px; }
+.plan-info b { display: block; font-size: 14px; }
+.plan-info small { font-size: 11px; color: #888; }
+.plan-option input:checked + .plan-card { border-color: #82D5E8; background: #f0faff; transform: scale(1.02); }
+
+/* Чекбокс */
+.custom-checkbox { display: flex; align-items: center; cursor: pointer; margin: 15px 0; font-size: 14px; user-select: none; }
+.custom-checkbox input { display: none; }
+.checkmark { width: 20px; height: 20px; border: 2px solid #82D5E8; border-radius: 6px; margin-right: 12px; position: relative; flex-shrink: 0; }
+.custom-checkbox input:checked + .checkmark { background: #82D5E8; }
+.checkmark:after { content: ""; position: absolute; display: none; left: 6px; top: 2px; width: 5px; height: 10px; border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.custom-checkbox input:checked + .checkmark:after { display: block; }
+
+/* Статус отправки */
+.status-msg { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 14px 28px; border-radius: 50px; z-index: 10000; font-size: 14px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); text-align: center; }
+
+.close { position: absolute; right: 15px; top: 15px; font-size: 24px; color: #ccc; cursor: pointer; }
+.hidden { display: none; }
+footer { text-align: center; padding: 30px 15px; color: #bbb; font-size: 0.85rem; }
+
+/* Адаптация для самых маленьких экранов */
+@media (max-width: 360px) {
+    .grid.small { grid-template-columns: 1fr; }
+    .card.price { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; }
+    header h1 { font-size: 1.5rem; }
+}
