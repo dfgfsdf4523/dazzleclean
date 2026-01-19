@@ -1,1 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dazzle — Сервис для дома</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<header>
+    <div class="container">
+        <h1 id="serviceTitle">✨ DazzleService</h1> 
+        <p>Качество и надежность</p>
+    </div>
+</header>
+
+<main class="container">
+    <section class="hero compact">
+        <h2 id="heroText">Решим вашу задачу сегодня</h2>
+        <button id="orderBtn" class="main-btn">Вызвать мастера</button>
+    </section>
+
+    <section class="services-section compact">
+        <h3>Что мы делаем 👇</h3>
+        <div class="accordion" id="serviceAccordion">
+            </div>
+    </section>
+
+    <section class="prices compact">
+        <h3>Ориентировочные цены</h3>
+        <div class="grid small" id="priceGrid">
+            </div>
+    </section>
+</main>
+
+<footer>
+    <p>📞 +375 (29) 000-00-00 | © 2026 Dazzle Group</p>
+</footer>
+
+<div class="modal hidden" id="orderModal">
+    <div class="modal-content">
+        <span class="close" data-close>&times;</span>
+        <h3 id="modalHeader">Заявка 🏠</h3>
+        <div class="modal-price-tag">Базовая цена: <span id="orderTotalPrice">50</span> BYN</div>
+        
+        <input type="text" id="orderName" placeholder="Ваше имя" oninput="this.value = this.value.replace(/[0-9]/g, '')">
+        <div class="phone-wrapper">
+            <img src="nomer.ico" alt="BY" class="flag-icon">
+            <div class="input-rel-container">
+                <input type="tel" id="orderPhone" value="+375 " maxlength="14">
+                <span class="phone-hint" id="orderHint">(29) 000 00 00</span>
+            </div>
+        </div>
+        <input type="text" id="orderAddress" placeholder="Адрес (улица, дом, кв)">
+        
+        <label class="custom-checkbox">
+            <input type="checkbox" id="urgentOrder" class="price-recalc">
+            <span class="checkmark"></span>
+            <span class="label-text">Срочный выезд 🚀 <b>(+15 BYN)</b></span>
+        </label>
+        
+        <button id="sendOrder" class="modal-submit-btn">Оформить заказ</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
